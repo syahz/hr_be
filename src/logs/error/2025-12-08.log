@@ -1,0 +1,53 @@
+2025-12-08 11:00:08 error: uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/auth-services.ts(74,7): error TS1005: ',' expected.
+src/services/auth-services.ts(74,13): error TS1005: ',' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/auth-services.ts(74,7): error TS1005: ',' expected.
+src/services/auth-services.ts(74,13): error TS1005: ',' expected.
+
+    at Object.<anonymous> (D:\BMU\HR BMU\BE\src\services\auth-services.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1688:14)
+    at Module._compile (D:\BMU\HR BMU\BE\node_modules\source-map-support\source-map-support.js:521:25)
+    at Module.m._compile (C:\Users\DWIAJU~1\AppData\Local\Temp\ts-node-dev-hook-5825664388043676.js:69:33)
+    at node:internal/modules/cjs/loader:1820:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\DWIAJU~1\AppData\Local\Temp\ts-node-dev-hook-5825664388043676.js:114:20)
+    at require.extensions.<computed> (C:\Users\DWIAJU~1\AppData\Local\Temp\ts-node-dev-hook-5825664388043676.js:71:20)
+    at Object.nodeDevHook [as .ts] (D:\BMU\HR BMU\BE\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1423:32)
+    at Function._load (node:internal/modules/cjs/loader:1246:12)
+2025-12-08 11:00:41 error: uncaughtException: ⨯ Unable to compile TypeScript:
+src/services/auth-services.ts(74,7): error TS1005: ',' expected.
+src/services/auth-services.ts(74,13): error TS1005: ',' expected.
+
+Error: ⨯ Unable to compile TypeScript:
+src/services/auth-services.ts(74,7): error TS1005: ',' expected.
+src/services/auth-services.ts(74,13): error TS1005: ',' expected.
+
+    at Object.<anonymous> (D:\BMU\HR BMU\BE\src\services\auth-services.ts:1:7)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1688:14)
+    at Module._compile (D:\BMU\HR BMU\BE\node_modules\source-map-support\source-map-support.js:521:25)
+    at Module.m._compile (C:\Users\DWIAJU~1\AppData\Local\Temp\ts-node-dev-hook-5825664388043676.js:69:33)
+    at node:internal/modules/cjs/loader:1820:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\DWIAJU~1\AppData\Local\Temp\ts-node-dev-hook-5825664388043676.js:114:20)
+    at require.extensions.<computed> (C:\Users\DWIAJU~1\AppData\Local\Temp\ts-node-dev-hook-5825664388043676.js:71:20)
+    at Object.nodeDevHook [as .ts] (D:\BMU\HR BMU\BE\node_modules\ts-node-dev\lib\hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1423:32)
+    at Function._load (node:internal/modules/cjs/loader:1246:12)
+2025-12-08 11:04:01 error: Portal user missing in token response
+2025-12-08 11:09:58 error: SSO login failed (unknown)
+2025-12-08 11:26:00 error: SSO login failed (unknown)
+2025-12-08 11:30:58 error: SSO login failed (unknown)
+2025-12-08 11:31:41 error: SSO login failed (unknown)
+2025-12-08 11:34:59 error: SSO login failed (unknown)
+2025-12-08 11:35:21 error: SSO login failed (unknown)
+2025-12-08 11:35:54 error: SSO login failed (unknown)
+2025-12-08 11:47:10 error: SSO login failed (unknown)
+2025-12-08 11:56:53 error: SSO login failed (unknown)
+2025-12-08 11:57:41 error: SSO login failed (unknown)
+2025-12-08 11:59:54 error: SSO login failed (unknown)
+2025-12-08 11:59:58 error: SSO login failed (unknown)
+2025-12-08 12:02:17 error: Portal user missing in token response
+2025-12-08 12:02:27 error: Portal user missing in token response
+2025-12-08 12:02:40 error: Portal user missing in token response
+2025-12-08 12:03:35 error: SSO login failed (unknown)

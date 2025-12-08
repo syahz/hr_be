@@ -1,0 +1,91 @@
+// ge/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+
+model Feedback {
+  id          String   @id @default(uuid())
+  rating      Int
+  suggestion  String? @db.LongText()
+  unitId      String
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  ipAddress   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("feedbacks")
+}
+
+model FeedbackHeadOffice {
+  id          String     @id @default(uuid())
+  rating      Int
+  suggestion  String?    @db.LongText()
+  divisionId  String
+  division    Division       @relation(fields: [divisionId], references: [id])
+  ipAddress   String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("feedback_head_offices")
+}
+
+model User {
+  id                String      @id @default(uuid())
+  name              String
+  email             String      @unique
+  roleId            String
+  unitId            String
+  divisionId        String?
+  role              Role        @relation(fields: [roleId], references: [id])
+  unit              Unit        @relation(fields: [unitId], references: [id])
+  division          Division?   @relation(fields: [divisionId], references: [id])
+  refreshTokens     RefreshToken[]
+
+  @@map("users")
+}
+
+model Role {
+  id         String @id @default(uuid())
+  name       String @unique
+  users      User[]
+
+  @@map("roles")
+}
+
+model Division {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  users      User[]
+  feedbacks  FeedbackHeadOffice[]
+
+  @@map("divisions")
+}
+
+model Unit {
+  id                         String   @id @default(uuid())
+  code                       String   @unique
+  name                       String   @unique
+  users                      User[]
+  feedbacks                  Feedback[]
+  @@map("units")
+}
+
+// For Auth
+model RefreshToken {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  tokenHash  String   @unique
+  revoked    Boolean  @default(false)
+  replacedBy String?
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+
+  @@map("refresh_tokens")
+}
