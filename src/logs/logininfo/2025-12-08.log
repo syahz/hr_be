@@ -15,3 +15,35 @@
 2025-12-08 12:02:27 error: Portal user missing in token response
 2025-12-08 12:02:40 error: Portal user missing in token response
 2025-12-08 12:03:35 error: SSO login failed (unknown)
+2025-12-08 13:56:46 error: SSO login failed (unknown)
+2025-12-08 13:59:01 error: Portal user missing in token response
+2025-12-08 13:59:15 error: Portal user missing in token response
+2025-12-08 13:59:15 error: Portal user missing in token response
+2025-12-08 14:02:30 error: Portal user missing in token response
+2025-12-08 14:02:41 error: Portal user missing in token response
+2025-12-08 14:02:41 error: Portal user missing in token response
+2025-12-08 14:03:43 error: Portal user missing in token response
+2025-12-08 14:03:43 error: Portal user missing in token response
+2025-12-08 14:04:10 error: SSO login failed (unknown)
+2025-12-08 14:08:52 error: SSO login failed (unknown)
+2025-12-08 14:08:52 error: 
+Invalid `prismaClient.refreshToken.create()` invocation in
+D:\BMU\HR BMU\BE\src\services\auth-services.ts:112:37
+
+  109 
+  110 await resetUserRefreshTokens(portalUser.id)
+  111 
+→ 112 await prismaClient.refreshToken.create(
+Foreign key constraint violated on the fields: (`userId`)
+2025-12-08 14:11:08 error: Portal user missing in token response
+2025-12-08 14:14:12 error: SSO login failed (unknown)
+2025-12-08 14:14:12 error: 
+Invalid `prismaClient.refreshToken.create()` invocation in
+D:\BMU\HR BMU\BE\src\services\auth-services.ts:112:37
+
+  109 
+  110 await resetUserRefreshTokens(portalUser.id)
+  111 
+→ 112 await prismaClient.refreshToken.create(
+Foreign key constraint violated on the fields: (`userId`)
+2025-12-08 15:42:37 error: JWT verify error: jwt expired

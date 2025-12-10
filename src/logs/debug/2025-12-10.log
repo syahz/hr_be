@@ -1,0 +1,37 @@
+2025-12-10 09:42:33 debug: {"code":"6ab7f095fb17e0c2dc37132b1e2944651b04477c96226df15bb50a184528577211f444ddab09f76b439e2859b708b43843b82a0332ba4ddd3a2c6c75a08f82b1"}
+2025-12-10 09:42:33 debug: SSO token response received
+2025-12-10 09:42:33 debug: {"data":{"status":403}}
+2025-12-10 09:42:33 error: Portal user missing in token response
+2025-12-10 09:45:46 debug: {"code":"7ce19ec8d08714c7d46ee7e19e6650b8efc88ddd7c607a4222268b362090dfecfd2fed428773ab206cbc0b57ac8f46a2b1a7e98752d4e335789be09c9e8d944f"}
+2025-12-10 09:45:46 debug: SSO token response received
+2025-12-10 09:45:46 debug: {"data":{"status":403}}
+2025-12-10 09:45:46 error: Portal user missing in token response
+2025-12-10 09:46:55 debug: {"code":"41808038067cf814d821b4045feda2969557f3199c0f27073ca5d16ddacd4c3aab7be1bea40eac36e1b3ce5664504151c96be9479705e5725716841e4c4c400a"}
+2025-12-10 09:46:55 debug: SSO token response received
+2025-12-10 09:46:55 debug: {"data":{"status":403}}
+2025-12-10 09:46:55 error: Portal user missing in token response
+2025-12-10 09:48:11 debug: {"code":"bf0d680d39ed3656161eca7783aebffa8897704eb086e8ec9ae604b3d3447d225b2b14d1151ca414a0a827c1d96b47ff318da45ec05320926378e899ae0fe1a5"}
+2025-12-10 09:48:11 debug: SSO token response received
+2025-12-10 09:48:11 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administrator","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T02:48:08.949Z"}}
+2025-12-10 09:52:03 debug: {"code":"ad38aeb20a4cc659b098e2de67bf47752cf33b24eb47953d993805c2789a93a5ed888ca19e68322526afe3010d0da12532e0aadae9f0d2990b387d5032e5d9e2"}
+2025-12-10 09:52:04 debug: SSO token response received
+2025-12-10 09:52:04 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administrator","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T02:52:01.722Z"}}
+2025-12-10 09:59:17 debug: {"code":"07f669f029f953630c0ac34a4d07a614a519c0ae9f03d74131be8eb3cec4688dbe5de1cefce8fe5adba6bca3291299b41dd0e8337bca713624a0c570e3b982bc"}
+2025-12-10 09:59:18 debug: SSO token response received
+2025-12-10 09:59:18 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administrator","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T02:59:09.486Z"}}
+2025-12-10 10:15:22 debug: {"code":"4e8f70e3a42060ca2013141ef81f68a930ae89b59277809d2cee53f7de930a472483e16e780eb991cca3378b965f6f3b9d0799a506cbe9180d7a32d5eb2e31e2"}
+2025-12-10 10:15:22 debug: SSO token response received
+2025-12-10 10:15:22 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administratorrrrrrr","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T03:15:18.811Z"}}
+2025-12-10 10:16:59 debug: {"code":"4e8f70e3a42060ca2013141ef81f68a930ae89b59277809d2cee53f7de930a472483e16e780eb991cca3378b965f6f3b9d0799a506cbe9180d7a32d5eb2e31e2"}
+2025-12-10 10:17:00 debug: SSO token response received
+2025-12-10 10:17:00 debug: {"data":{"status":400}}
+2025-12-10 10:17:00 error: Portal user missing in token response
+2025-12-10 10:17:32 debug: {"code":"a5581143af0336d28f08b8ea3c2fd92b3ec1f414ada3be2661c5898d252e814699cb7861df5eb97558101ea41ac148b650bfbae044105761821a85529221d331"}
+2025-12-10 10:17:32 debug: SSO token response received
+2025-12-10 10:17:32 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administratorrrrrrr","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T03:17:30.152Z"}}
+2025-12-10 10:21:18 debug: {"code":"6d7c73cba9ffbbdb5b0d3b8fbde51fa477a11b69e687425bc5e008acbaf334b8e9fe1a5221e3b6a4a062fbaa320f1481b6aa7e967f856186d3c07eee6434667e"}
+2025-12-10 10:21:18 debug: SSO token response received
+2025-12-10 10:21:18 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administratorrrrrrr","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T03:21:16.252Z"}}
+2025-12-10 10:21:42 debug: {"code":"161486b60e7bf554076ea31d10a62c0276995fb4582ba3153d9bedebb5978bdf66046db7a30a88580e9da17ce643d80d4aa3761cd060b8b39f647c6b0debcfb7"}
+2025-12-10 10:21:42 debug: SSO token response received
+2025-12-10 10:21:42 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administratorrrrrrr","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-09T03:21:41.526Z"}}

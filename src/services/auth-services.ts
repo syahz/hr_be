@@ -7,7 +7,7 @@ import { prismaClient } from '../application/database'
 import { ResponseError } from '../error/response-error'
 import { logger } from '../utils/logger'
 
-const REFRESH_EXPIRES_SECONDS = Number(process.env.REFRESH_TOKEN_EXPIRES_SECONDS || 60 * 60 * 24 * 30)
+const REFRESH_EXPIRES_SECONDS = Number(process.env.hr_refresh_token_EXPIRES_SECONDS || 60 * 60 * 24 * 30)
 const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN
 const SINGLE_SESSION = (process.env.SINGLE_SESSION || 'true').toLowerCase() === 'true'
 
@@ -80,7 +80,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     const portalUser = payload?.user ?? payload?.data?.user
     if (!portalUser) {
       logger.error('Portal user missing in token response')
-      return res.status(500).json({ error: 'Invalid token response: user missing' })
+      return res.status(500).json({ error: code })
     }
 
     const role = await prismaClient.role.findUnique({ where: { name: portalUser.role } })
@@ -94,6 +94,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     const localUser = await prismaClient.user.update({
       where: { email: portalUser.email },
       data: {
+        id: portalUser.id,
         name: portalUser.name,
         roleId: role.id,
         unitId: unit.id,
@@ -110,13 +111,13 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     await resetUserRefreshTokens(portalUser.id)
 
     await prismaClient.refreshToken.create({
-      data: { userId: portalUser.id, tokenHash, expiresAt }
+      data: { userId: localUser.id, tokenHash, expiresAt }
     })
 
     const csrfEnabled = process.env.CSRF_ENABLED === 'true'
     const csrfToken = csrfEnabled ? createRefreshToken().slice(0, 32) : null
 
-    res.cookie('refresh_token', refreshPlain, cookieOptions())
+    res.cookie('hr_refresh_token', refreshPlain, cookieOptions())
     // Cookies should store names
     res.cookie('user_role', role.name, nonHttpOnlyCookieOptions())
     res.cookie('user_unit', unit.name, nonHttpOnlyCookieOptions())
@@ -157,6 +158,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     } else {
       logger.error('SSO login failed (unknown)', JSON.stringify({ message: error?.message, stack: error?.stack }))
     }
+    logger.error(error)
     return res.status(500).json({ error: 'SSO login failed' })
   }
 }
@@ -174,8 +176,8 @@ export const refreshAuth = async (rt: string | undefined, res: Response) => {
   // Jika token tidak ada, sudah dicabut (dari logout), atau kedaluwarsa
   if (!stored || stored.revoked || stored.expiresAt < new Date()) {
     // Clear both host-only and domain-scoped cookies to avoid duplicates
-    res.clearCookie('refresh_token', { path: '/' })
-    if (COOKIE_DOMAIN) res.clearCookie('refresh_token', { path: '/', domain: COOKIE_DOMAIN })
+    res.clearCookie('hr_refresh_token', { path: '/' })
+    if (COOKIE_DOMAIN) res.clearCookie('hr_refresh_token', { path: '/', domain: COOKIE_DOMAIN })
     res.clearCookie('portal_session', { path: '/' })
     if (COOKIE_DOMAIN) res.clearCookie('portal_session', { path: '/', domain: COOKIE_DOMAIN })
     res.clearCookie('user_unit', { path: '/' })
@@ -233,9 +235,9 @@ export const refreshAuth = async (rt: string | undefined, res: Response) => {
   const accessToken = signAccessToken({ userId: user.id, role })
 
   // Set semua cookie baru (clear potential host-only duplicate first)
-  res.clearCookie('refresh_token', { path: '/' })
-  if (COOKIE_DOMAIN) res.clearCookie('refresh_token', { path: '/', domain: COOKIE_DOMAIN })
-  res.cookie('refresh_token', newPlain, cookieOptions())
+  res.clearCookie('hr_refresh_token', { path: '/' })
+  if (COOKIE_DOMAIN) res.clearCookie('hr_refresh_token', { path: '/', domain: COOKIE_DOMAIN })
+  res.cookie('hr_refresh_token', newPlain, cookieOptions())
   res.cookie('user_unit', unit, nonHttpOnlyCookieOptions())
   res.cookie('user_role', role, nonHttpOnlyCookieOptions())
 
@@ -272,8 +274,8 @@ export const logoutAuth = async (rt: string | undefined, res: Response) => {
     const tokenHash = hashToken(rt)
     await prismaClient.refreshToken.updateMany({ where: { tokenHash }, data: { revoked: true } })
     // Clear both host-only and domain cookies to fully remove
-    res.clearCookie('refresh_token', { path: '/' })
-    if (COOKIE_DOMAIN) res.clearCookie('refresh_token', { path: '/', domain: COOKIE_DOMAIN })
+    res.clearCookie('hr_refresh_token', { path: '/' })
+    if (COOKIE_DOMAIN) res.clearCookie('hr_refresh_token', { path: '/', domain: COOKIE_DOMAIN })
     res.clearCookie('user_unit', { path: '/' })
     if (COOKIE_DOMAIN) res.clearCookie('user_unit', { path: '/', domain: COOKIE_DOMAIN })
     if (process.env.CSRF_ENABLED === 'true') {
