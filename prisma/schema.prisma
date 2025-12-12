@@ -9,30 +9,40 @@ datasource db {
 }
 
 
-model Feedback {
-  id          String   @id @default(uuid())
-  rating      Int
-  suggestion  String? @db.LongText()
-  unitId      String
-  unit        Unit     @relation(fields: [unitId], references: [id])
-  ipAddress   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model SuratPerintahPembayaran {
+  id                              String   @id @default(uuid())
+  upah                            Float
+  bantuanDana                     Float // Melahirkan, kematian, dsb
+  lembur                          Float
+  tagihanKJPRI                    Float
+  pphDuaSatuPekerja               Float
+  pphDuaSatuPerusahaan            Float
+  // BPJS Kesehatan
+  premiBpjsKesehatan              Float
+  bpjsKesehatanPerusahaan         Float // Premi x 80%
+  bpjsKesehatanPekerja            Float // Premi x 20%
+  bpjsKesehatanFamily             Float
+  // BPJS Ketenagakerjaan
+  iuranJkk                        Float // 0.24%
+  iuranJkm                        Float // 0.30%
+  iuranJhtTenagaKerja             Float // 2% dari upah
+  iuranJpTenagaKerja              Float // 3% dari upah
+  totalTagihanTenagaKerja         Float
+  iuranJhtPerusahaan              Float // 3.7% dari upah
+  iuranJpPerusahaan               Float // 2% dari upah
+  totalTagihanPerusahaan          Float
+  totalTagihanBpjsKetenagakerjaan Float
+  piutang                         Float
+  hutang                          Float
+  unitId                          String
+  unit                            Unit     @relation(fields: [unitId], references: [id])
+  month                           Int
+  year                            Int
+  createdAt                       DateTime @default(now())
+  updatedAt                       DateTime @updatedAt
 
-  @@map("feedbacks")
-}
 
-model FeedbackHeadOffice {
-  id          String     @id @default(uuid())
-  rating      Int
-  suggestion  String?    @db.LongText()
-  divisionId  String
-  division    Division       @relation(fields: [divisionId], references: [id])
-  ipAddress   String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-
-  @@map("feedback_head_offices")
+  @@map("surat_perintah_pembayarans")
 }
 
 model User {
@@ -50,6 +60,20 @@ model User {
   @@map("users")
 }
 
+model UnitVirtualAccount {
+  id         String   @id @default(uuid())
+  unitId     String
+  unit       Unit     @relation(fields: [unitId], references: [id])
+  vaNumber   String   @unique // Bisa Nomor VA atau bisa Keterangan (untuk Hutang)
+  vaBank     String
+  vaName     String // BPJS Kesehatan / BPJS Ketenagakerjaan
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("unit_virtual_accounts")
+}
+
 model Role {
   id         String @id @default(uuid())
   name       String @unique
@@ -62,7 +86,6 @@ model Division {
   id         String   @id @default(uuid())
   name       String   @unique
   users      User[]
-  feedbacks  FeedbackHeadOffice[]
 
   @@map("divisions")
 }
@@ -72,7 +95,8 @@ model Unit {
   code                       String   @unique
   name                       String   @unique
   users                      User[]
-  feedbacks                  Feedback[]
+  suratPerintahPembayarans   SuratPerintahPembayaran[]
+  unitVirtualAccounts        UnitVirtualAccount[]
   @@map("units")
 }
 

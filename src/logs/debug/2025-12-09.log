@@ -1,3 +1,0 @@
-2025-12-09 07:59:16 debug: {"code":"767cec1ec60a1723bddc5359b64770840a315fbd670ce77169378463eb83e10211f2fdf832e52642c428cc9f18bd9800fc7e6426dc3e2432682bb450a8917a3d"}
-2025-12-09 07:59:16 debug: SSO token response received
-2025-12-09 07:59:16 debug: {"data":{"user":{"id":"27cf67e5-6b9b-47f6-8dc9-6cdd30328f89","email":"admin@example.com","name":"Administrator","role":"Admin","unit_code":"HO","division_name":"IT Support"},"portal_refresh_expires_ts":"2026-01-08T00:59:14.733Z"}}

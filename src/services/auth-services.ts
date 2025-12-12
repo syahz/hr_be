@@ -7,7 +7,7 @@ import { prismaClient } from '../application/database'
 import { ResponseError } from '../error/response-error'
 import { logger } from '../utils/logger'
 
-const REFRESH_EXPIRES_SECONDS = Number(process.env.hr_refresh_token_EXPIRES_SECONDS || 60 * 60 * 24 * 30)
+const REFRESH_EXPIRES_SECONDS = Number(process.env.HR_REFRESH_TOKEN_EXPIRES_SECONDS || 60 * 60 * 24 * 30)
 const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN
 const SINGLE_SESSION = (process.env.SINGLE_SESSION || 'true').toLowerCase() === 'true'
 
@@ -17,27 +17,27 @@ function withDomain<T extends Record<string, any>>(opts: T): T & { domain?: stri
 
 function cookieOptions() {
   // Host-scope or domain-scope depending on COOKIE_DOMAIN
-  // return withDomain({
-  return {
+  return withDomain({
+    // return {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax' as const,
     maxAge: REFRESH_EXPIRES_SECONDS * 1000,
     path: '/'
-  }
-  // })
+    // }
+  })
 }
 
 function nonHttpOnlyCookieOptions() {
-  // return withDomain({
-  return {
+  return withDomain({
+    // return {
     httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax' as const,
     maxAge: REFRESH_EXPIRES_SECONDS * 1000,
     path: '/'
-  }
-  // })
+    // }
+  })
 }
 
 async function resetUserRefreshTokens(userId: string) {
