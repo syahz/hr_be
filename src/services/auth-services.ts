@@ -81,6 +81,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     // Some APIs wrap payload under `data`, handle both shapes
     const payload: any = tokenResponse.data
     const portalUser = payload?.user ?? payload?.data?.user
+    logger.debug(`Portal user extracted: ${JSON.stringify(portalUser)}`)
     if (!portalUser) {
       logger.error('Portal user missing in token response')
       return res.status(500).json({ error: code })
@@ -91,7 +92,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     const division = await prismaClient.division.findUnique({ where: { name: portalUser.division_name } })
 
     if (!role || !unit || !division) {
-      return res.status(400).json({ error: 'Data Master (Role/Unit/Divisi) belum tersinkronisasi di sistem Feedback' })
+      throw new ResponseError(400, 'Data Master (Role/Unit/Divisi) belum tersinkronisasi di sistem Feedback')
     }
 
     const localUser = await prismaClient.user.update({
@@ -162,7 +163,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
       logger.error('SSO login failed (unknown)', JSON.stringify({ message: error?.message, stack: error?.stack }))
     }
     logger.error(error)
-    return res.status(500).json({ error: 'SSO login failed' })
+    return res.status(500).json({ error: error })
   }
 }
 
