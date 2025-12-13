@@ -12,7 +12,7 @@ export const web = express()
 web.set('trust proxy', 1)
 
 const corsOptions = {
-  origin: FRONTEND_URL || 'http://localhost:3002',
+  origin: FRONTEND_URL || 'https://hr.bmuconnect.id',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true
 }

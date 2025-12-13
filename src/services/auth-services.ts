@@ -106,6 +106,8 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
       }
     })
 
+    logger.debug(`Local user upserted: ${JSON.stringify(localUser)}`)
+
     const accessToken = signAccessToken({ userId: portalUser.id, role: role.name })
 
     const refreshPlain = createRefreshToken()
