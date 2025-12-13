@@ -137,18 +137,6 @@ async function seedAdminUser() {
   })
 
   console.log('Admin user seeded successfully.')
-
-  // === Grant admin access to all client apps ===
-  const adminUser = await prisma.user.findUnique({ where: { email: 'admin@example.com' } })
-  const apps = await prisma.clientApp.findMany()
-  for (const app of apps) {
-    await prisma.userAppAccess.upsert({
-      where: { userId_appId: { userId: adminUser.id, appId: app.id } },
-      update: {},
-      create: { userId: adminUser.id, appId: app.id }
-    })
-  }
-  console.log('Admin access to client apps seeded successfully.')
 }
 
 // === Main Runner (Tidak berubah) ===
