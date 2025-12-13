@@ -67,9 +67,9 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
   logger.debug(`Starting SSO login with code: ${code}`)
   logger.debug(`Using PORTAL_API_URL: ${PORTAL_API_URL}`)
   logger.debug(`Using CLIENT_ID: ${CLIENT_ID}`)
-  logger.debug(`Using CLIENT_SECRET: ${CLIENT_SECRET ? '***' : 'not set'}`)
+  logger.debug(`Using CLIENT_SECRET: ${CLIENT_SECRET}`)
   try {
-    const tokenResponse = await axios.post<PortalTokenResponse>(`${PORTAL_API_URL}/api/auth/token`, {
+    const tokenResponse = await axios.post<PortalTokenResponse>(`${PORTAL_API_URL}/auth/token`, {
       code,
       client_id: CLIENT_ID ?? 'app_feedback',
       client_secret: CLIENT_SECRET
