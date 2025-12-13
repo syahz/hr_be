@@ -7,7 +7,8 @@ export const sppController = {
     try {
       const query = SppQueryValidation.parse(req.query)
       const result = await getSpp(query)
-      res.json({ data: result.data, paging: { total: result.total, page: result.page, size: result.size } })
+      // Services already return mapped pagination + data in snake_case
+      res.json(result)
     } catch (e) {
       next(e)
     }
