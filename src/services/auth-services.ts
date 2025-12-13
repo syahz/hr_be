@@ -63,12 +63,15 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
     portal_refresh_expires_ts: string | null
   }
 
-  logger.debug(JSON.stringify({ code }))
-
+  // make logger debug for get code request with messages
+  logger.debug(`Starting SSO login with code: ${code}`)
+  logger.debug(`Using PORTAL_API_URL: ${PORTAL_API_URL}`)
+  logger.debug(`Using CLIENT_ID: ${CLIENT_ID}`)
+  logger.debug(`Using CLIENT_SECRET: ${CLIENT_SECRET ? '***' : 'not set'}`)
   try {
     const tokenResponse = await axios.post<PortalTokenResponse>(`${PORTAL_API_URL}/api/auth/token`, {
       code,
-      client_id: CLIENT_ID,
+      client_id: CLIENT_ID ?? 'app_feedback',
       client_secret: CLIENT_SECRET
     })
 
@@ -154,7 +157,7 @@ export const ssoLoginAuth = async (code: string, res: Response) => {
       const status = error.response?.status
       const data = error.response?.data
       const msg = error.message
-      logger.error('SSO login failed (axios)', JSON.stringify({ status, data, msg }))
+      logger.error('SSO login failed (axios)', JSON.stringify({ error: error }))
     } else {
       logger.error('SSO login failed (unknown)', JSON.stringify({ message: error?.message, stack: error?.stack }))
     }
